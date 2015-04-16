@@ -21,19 +21,10 @@
 			<?php include 'includes/header.php'; ?>
 			<section>
 				<form id="formBanq" method="post" action="#">
-						<fieldset>
-							<legend>Intitulé</legend>
-								<input type="text" name="intitule" id="formBanq_intitule" placeholder="..."/>
-						</fieldset>
-						<fieldset>
-							<legend>C.Banque</legend>
-								<input type="text" name="cBanque" id="formBanq_cBanque" maxlength="5" placeholder="..."/>
-						</fieldset>
-						<fieldset>
-							<legend>C.Guichet</legend>
-								<input type="text" name="cGuichet" id="formBanq_cGuichet" maxlength="5"><legend></legend</input>
-						</fieldset>
-						<input type="submit" name="creBanque" id="formBanq_cre" value="Créer une banque"/>
+					<input type="text" name="intitule" id="formBanq_intitule"/>
+					<input type="text" name="cBanque" id="formBanq_cBanque"  maxlength="5"/>
+					<input type="text" name="cGuichet" id="formBanq_cGuichet" maxlength="5"></input>
+					<input type="submit" name="creBanque" id="formBanq_cre" value="Créer une banque"/>
 				</form>
 				<?php
 				
@@ -56,7 +47,7 @@
 					$req = mysqli_query($bdd,$sql);
 					echo '<div id="bloc_gen">';
 					while($rlt = mysqli_fetch_assoc($req)) {
-						echo '<a href="comptes.php?id='.$rlt['bnq_id'].'" class="bloc_banque"><img src="../img/banque.png" alt=""/><p>'.$rlt['bnq_intitule'].'</p></a>';
+						echo '<a href="comptes.php?id='.$rlt['bnq_id'].'" class="bloc_banque"><img src="../img/banque2.png" alt=""/><p>'.$rlt['bnq_intitule'].'</p></a>';
 					}
 					echo '</div>';
 				?>

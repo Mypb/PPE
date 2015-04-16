@@ -54,14 +54,14 @@
 							
 								if(isset($_POST['creCre'])) {
 									if(empty($_POST['creNom']) || empty($_POST['crePrenom']) || empty($_POST['creMdp1']) || empty($_POST['creMdp2']) || empty($_POST['creMail'])) {
-										echo '<p id="errMsg">Vous devez remplir tout les champs</p>';
+										echo '<p id="message_erreur">Vous devez remplir tout les champs !</p>';
 									}
 									else {
 										if($_POST['creMdp1'] != $_POST['creMdp2']) {
-											echo '<p id="errMsg">Les mots de passe ne correspondent pas.</p>';
+											echo '<p id="message_erreur">Les mots de passe ne correspondent pas.!</p>';
 										}
 										else {
-											$sql = 'INSERT INTO utilisateurs VALUES("","'.mysqli_real_escape_string($bdd,$_POST['creNom']).'","'.mysqli_real_escape_string($bdd,$_POST['crePrenom']).'","'.mysqli_real_escape_string($bdd,sha1($_POST['creMdp1'])).'","'.mysqli_real_escape_string($bdd,$_POST['creMail']).'");';
+											$sql = 'INSERT INTO utilisateurs VALUES("","'.utf8_encode(mysqli_real_escape_string($bdd,$_POST['creNom'])).'","'.utf8_encode(mysqli_real_escape_string($bdd,$_POST['crePrenom'])).'","'.mysqli_real_escape_string($bdd,sha1($_POST['creMdp1'])).'","'.mysqli_real_escape_string($bdd,$_POST['creMail']).'");';
 											$req = mysqli_query($bdd,$sql);
 											header('Location:index.php');
 										}
@@ -90,7 +90,7 @@
 							
 								if(isset($_POST['cnxCnx'])) {
 									if(empty($_POST['cnxMail']) || empty($_POST['cnxMdp'])) {
-										echo '<p id="errMsg">Vous devez remplir tout les champs !</p>';
+										echo '<p id="message_erreur">Vous devez remplir tout les champs !</p>';
 									}
 									else {
 										$sql = 'SELECT * FROM utilisateurs WHERE utl_mail ="'.mysqli_real_escape_string($bdd,$_POST["cnxMail"]).'";';
@@ -103,7 +103,7 @@
 											header('Location:contenu/php/banques.php');
 										}
 										else {
-											echo '<p id="errMsg">Les identifiants sont incorrects !</p>';
+											echo '<p id="message_erreur">Les identifiants sont incorrects !</p>';
 										}
 									}
 								}

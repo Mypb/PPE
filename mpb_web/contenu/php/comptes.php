@@ -38,7 +38,7 @@
                 $sql = 'SELECT * FROM comptes WHERE cpt_bnqId ='.$_GET["id"].'';
                 $req = mysqli_query($bdd,$sql);
                 while($rlt = mysqli_fetch_assoc($req)) {
-                    echo '<a href="#">'.$rlt['cpt_intitule'].'</a><br/>';
+				echo '<a href="interface.php?id='.$rlt['cpt_id'].'">'.$rlt['cpt_intitule'].'</a><br/>';
                 }
             ?>
         </section>

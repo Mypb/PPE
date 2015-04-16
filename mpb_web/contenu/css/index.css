@@ -1,0 +1,78 @@
+#bt_global {
+margin:auto;
+width:884px;
+}
+
+#bt_global, #formCre, div {
+overflow:auto;
+}
+
+#bt_inscription, #bt_connexion {
+border:1px solid;
+display:inline-block;
+padding:12px 24px;
+vertical-align:top;
+width:380px;
+float:left;
+background-color:rgba(255,255,255,.85);
+border:1px solid rgb(200,200,200);
+}
+
+#bt_inscription {
+margin:0 24px 0 0;
+}
+
+h2 {
+margin:0 0 24px 0;
+color:rgb(75,125,175);
+border-bottom:2px dotted rgb(125,175,225);
+}
+
+label, input {
+display:inline-block;
+padding:3px 12px;
+}
+
+form {
+width:316px;
+margin:auto;
+}
+
+label {
+width:100px;
+float:left;
+text-align:right;
+}
+
+input {
+box-sizing:border-box;
+width:192px;
+float:left;
+border:1px solid rgb(175,175,175);
+}
+
+#div_formCre_nom, #div_formCre_prenom, #div_formCre_mdp1, #div_formCre_mdp2, #div_formCnx_mail {
+margin:0 0 6px 0;
+}
+
+#div_formCre_mail, #div_formCnx_mdp {
+margin:0 0 12px 0;
+}
+
+#div_formCre_cre, #div_formCnx_cnx {
+float:right;
+}
+
+#div_formCre_cre input, #div_formCnx_cnx input {
+border:1px dotted;
+background-color:transparent;
+font-weight:bold;
+}
+
+#message_erreur {
+display:inline-block;
+margin:12px;
+padding:3px 12px;
+color:darkred;
+border:1px dashed;
+}
