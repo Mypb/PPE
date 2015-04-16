@@ -1,0 +1,65 @@
+CREATE DATABASE IF NOT EXISTS mpb;
+
+USE mpb;
+
+CREATE TABLE IF NOT EXISTS utilisateurs (
+utl_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+utl_nom VARCHAR(255) NOT NULL,
+utl_prenom VARCHAR(255) NOT NULL,
+utl_motDePasse CHAR(40) NOT NULL,
+utl_mail VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS banques (
+bnq_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+bnq_utlId INT NOT NULL,
+bnq_intitule VARCHAR(255) NOT NULL,
+bnq_numero NUMERIC NOT NULL,
+bqn_guichet NUMERIC NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS comptes (
+cpt_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+cpt_utlId INT NOT NULL,
+cpt_bnqId INT NOT NULL,
+cpt_intitule VARCHAR(255) NOT NULL,
+cpt_type VARCHAR(255) NOT NULL,
+cpt_montant DOUBLE NOT NULL,
+cpt_numero NUMERIC NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS modes_reglements (
+rgl_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+rgl_libelle VARCHAR(255),
+rgl_opId INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS operations (
+op_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+op_montant DOUBLE NOT NULL,
+op_motif TEXT NOT NULL,
+op_tiers VARCHAR(255) NOT NULL,
+op_validation BOOLEAN NOT NULL,
+op_cptId INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS operations_planifiees (
+opPlan_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+opPlan_date DATE NOT NULL,
+opPlan_dateDebut DATE NOT NULL,
+opPlan_dateFin DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS types_operations (
+typOp_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+typOp_libelle VARCHAR(255) NOT NULL,
+typOp_opId INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS types_planifications (
+typPln_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+typPln_libelle VARCHAR(255) NOT NULL,
+typPln_opPlnId INT NOT NULL
+);
+
+INSERT INTO utilisateurs VALUES('','test','test','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3','test@test.net');
