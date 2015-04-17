@@ -1,0 +1,100 @@
+#bt_formBanq {
+background-color:rgba(255,255,255,.85);
+float:right;
+margin:0 16px 0 0;
+padding:12px 24px 12px 24px;
+border:1px solid rgb(200,200,200);
+}
+
+#bt_formBanq h2 {
+margin:0 0 24px 0;
+color:rgb(75,125,175);
+border-bottom:2px dotted rgb(125,175,225);
+}
+
+#formBanq {
+overflow:auto;
+}
+
+#formBanq label,#formBanq input{
+display:inline-block;
+padding:3px 12px;
+}
+
+#formBanq label {
+text-align:right;
+width:100px;
+}
+
+#formBanq input {
+box-sizing:border-box;
+width:160px;
+}
+
+#div_formBanq_intitule, #div_formBanq_cBanque, #div_formBanq_cGuichet {
+margin:0 0 6px 0;
+}
+
+#formBanq_intitule, #formBanq_cBanque, #formBanq_cGuichet {
+border:1px solid rgb(175,175,175);
+}
+
+#div_formBanq_cre {
+float:right;
+}
+
+#message_erreur {
+display:inline-block;
+margin:12px;
+padding:3px 12px;
+color:darkred;
+border:1px dashed;
+}
+
+#bt_banques {
+overflow:auto;
+}
+
+.bloc_banque {
+margin:12px;
+padding:12px;
+border:1px solid rgb(200,200,200);
+background-color:rgba(255,255,255,.8);
+text-decoration:none;
+width:160px;
+color:rgb(0,0,175);
+display:inline-block;
+}
+
+.bloc_banque img {
+border:1px solid rgb(200,200,200);
+background-color:#fff;
+padding:6px;
+display:block;
+margin:0 auto 8px auto;
+}
+
+.bloc_banque p {
+margin:0;
+text-align:center;
+font-size:85%;
+overflow:hidden;
+}
+
+#navigation {
+margin:0 0 24px 0;
+padding:6px 16px;
+background-color:rgba(255,255,255,.7);
+color:gray;
+font-size:90%;
+font-weight:bold;
+}
+
+#navigation a {
+text-decoration:none;
+color:gray;
+}
+
+#navigation a:hover {
+text-decoration:underline;
+}

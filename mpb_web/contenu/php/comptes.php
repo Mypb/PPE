@@ -19,10 +19,29 @@
     </head>
     <body>
         <?php include 'includes/header.php'; ?>
+		<div id="navigation">
+				<a href="banques.php">Banques</a> ► <a href="comptes.php?id=<?php echo $_GET['id']; ?>">Comptes</a>
+			</div>
         <section>
-            <form id="formCpt" method="post" action="#">
-                <div id="div_formCpt"><label>Intitulé :</label><input name="intitule" type="text"/><label>Type :</label><input name="type" type="text"/><label>Numéro :</label><input name="numero" type="text"/><input type="submit" name="creer_compte" value="Créer un compte"/></div>
-            </form>
+			<div id="bt_formCpt">
+				<h2>Créer un compte</h2>
+					<form id="formCpt" method="post" action="#">
+						<div id="div_formCpt_intitule">
+							<label>Intitulé</label>
+								<input id="formCpt_intitule" name="intitule" type="text"/>
+						</div>
+						<div id="div_formCpt_type">
+							<label>Type</label>
+								<input id="formCpt_type" name="type" type="text"/>
+						</div>
+						<div id="div_formCpt_numero">
+							<label>Numéro</label>
+								<input id="formCpt_numero" name="numero" type="text" maxlength="11"/>
+						</div>
+						<div id="div_formCpt_cre">
+							<input type="submit" id="formCpt_cre" name="creer_compte" value="Créer un compte"/>
+						</div>
+					</form>
             <?php
 			$bdd = mysqli_connect('localhost','root','','mpb');
                 if(isset($_POST['creer_compte'])) {
@@ -35,12 +54,18 @@
                         header('Location:#');
                     }
                 }
+			?>
+			</div>
+			<div id="bt_comptes">
+			<?php
                 $sql = 'SELECT * FROM comptes WHERE cpt_bnqId ='.$_GET["id"].'';
                 $req = mysqli_query($bdd,$sql);
                 while($rlt = mysqli_fetch_assoc($req)) {
-				echo '<a href="interface.php?id='.$rlt['cpt_id'].'">'.$rlt['cpt_intitule'].'</a><br/>';
+					echo '<a href="interface.php?id='.$rlt['cpt_id'].'">'.$rlt['cpt_intitule'].'</a><br/>';
                 }
             ?>
+			</div>
+			</div>
         </section>
         <?php include 'includes/footer.php'; ?>
     </body>

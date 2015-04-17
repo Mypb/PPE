@@ -1,0 +1,58 @@
+
+
+#bt_formCpt {
+float:right;
+border:1px solid rgb(200,200,200);
+padding:12px 24px;
+margin:0 16px 0 0;
+background-color:rgba(255,255,255,.85);
+}
+
+#bt_formCpt h2 {
+margin:0 0 24px 0;
+color:rgb(75,125,175);
+border-bottom:2px dotted rgb(125,175,225);
+}
+
+#formCpt {
+overflow:auto;
+}
+
+#formCpt label, #formCpt input {
+display:inline-block;
+padding:3px 12px;
+}
+
+#formCpt label {
+width:100px;
+text-align:right;
+}
+
+#formCpt_intitule, #formCpt_type, #formCpt_numero {
+border:1px solid rgb(175,175,175);
+box-sizing:border-box;
+width:160px;
+margin:0 0 6px;
+}
+
+#div_formCpt_cre {
+float:right;
+}
+
+#navigation {
+margin:0 0 24px 0;
+padding:6px 16px;
+background-color:rgba(255,255,255,.7);
+color:gray;
+font-size:90%;
+font-weight:bold;
+}
+
+#navigation a {
+text-decoration:none;
+color:gray;
+}
+
+#navigation a:hover {
+text-decoration:underline;
+}

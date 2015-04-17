@@ -2,5 +2,5 @@
     session_start ();
     session_unset ();
     session_destroy ();
-    header ('Location:/mpb/index.php');
+    header ('Location:/mpb_web/index.php');
 ?>
