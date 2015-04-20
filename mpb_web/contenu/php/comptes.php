@@ -1,11 +1,26 @@
 <?php
     session_start();
+	
     if(empty($_SESSION['id'])) {
-        header('Location:/mpb/index.php');
+        header('Location:index.php');
     }
+	
     else {
-		$bdd = mysqli_connect('localhost','root','','mpb');
+		$erreur = True;
+		include 'includes/bdd.php';
+		$sql = 'SELECT bnq_id FROM banques WHERE bnq_utlId ='.$_SESSION['id'].'';
+		$req = mysqli_query($bdd,$sql);
+		while($rlt = mysqli_fetch_assoc($req)) {
+			if($rlt['bnq_id'] == $_GET['id']) {
+				$erreur = False;
+			}
+		}
+		if($erreur == True) {
+			header('Location:comptes.php');
+		}
 	}
+	
+	include 'includes/bdd.php';
 ?>
 <!DOCTYPE html>
 <html>
