@@ -4,7 +4,7 @@
 		header('Location:contenu/php/banques.php');
 	}
 	else {
-		$bdd = mysqli_connect('localhost','root','','mpb');
+		include 'contenu/php/includes/bdd.php';
 	}
 ?>
 <!DOCTYPE html>

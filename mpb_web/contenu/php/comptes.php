@@ -1,10 +1,10 @@
 <?php
     session_start();
     if(empty($_SESSION['id'])) {
-        header('Location:/mpb/index.php');
+        header('Location:index.php');
     }
     else {
-		$bdd = mysqli_connect('localhost','root','','mpb');
+		include 'includes/bdd.php';
 	}
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,6 @@
 						</div>
 					</form>
             <?php
-			$bdd = mysqli_connect('localhost','root','','mpb');
                 if(isset($_POST['creer_compte'])) {
                     if(empty($_POST['intitule']) || empty($_POST['type']) || empty($_POST['numero'])) {
                         echo '<p>Vous devez remplir tout les champs !</p>';

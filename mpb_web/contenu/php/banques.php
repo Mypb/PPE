@@ -1,10 +1,10 @@
 <?php
 	session_start();
 	if(empty($_SESSION['id'])) {
-		header('Location:/mpb/index.php');
+		header('Location:index.php');
 	}
 	else {
-		$bdd = mysqli_connect('localhost','root','','mpb');
+		include 'includes/bdd.php';
 	}
 ?>
 <!DOCTYPE html>
@@ -19,9 +19,12 @@
 		</head>
 		<body>
 			<?php include 'includes/header.php'; ?>
+			<nav>
 			<div id="navigation">
 				<a href="banques.php">Banques</a> ►
+			<?php include 'includes/infos.php'; ?>
 			</div>
+			</nav>
 			<section>
 				<div id="bt_formBanq">
 					<h2>Créer une banque</h2>
@@ -55,7 +58,7 @@
 					$req = mysqli_query($bdd,$sql);
 					echo '<div id="bloc_gen">';
 					while($rlt = mysqli_fetch_assoc($req)) {
-						echo '<a title="'.$rlt['bnq_intitule'].'" href="comptes.php?id='.$rlt['bnq_id'].'" class="bloc_banque"><img src="../img/banque2.png" alt=""/><p>'.$rlt['bnq_intitule'].'</p></a>';
+						echo '<a title="'.$rlt['bnq_intitule'].'" href="comptes.php?id='.$rlt['bnq_id'].'" class="bloc_banque"><img src="../img/banque3.png" alt=""/><p>'.$rlt['bnq_intitule'].'</p></a>';
 					}
 					echo '</div>';
 				?>

@@ -64,11 +64,10 @@ text-decoration:none;
 width:160px;
 color:rgb(0,0,175);
 display:inline-block;
+color:rgb(25,75,125);
 }
 
 .bloc_banque img {
-border:1px solid rgb(200,200,200);
-background-color:#fff;
 padding:6px;
 display:block;
 margin:0 auto 8px auto;
