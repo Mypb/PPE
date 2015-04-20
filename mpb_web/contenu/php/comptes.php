@@ -16,7 +16,7 @@
 			}
 		}
 		if($erreur == True) {
-			header('Location:comptes.php');
+			header('Location:deconnexion.php');
 		}
 	}
 	
