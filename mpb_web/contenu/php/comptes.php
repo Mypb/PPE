@@ -65,7 +65,12 @@
                 $sql = 'SELECT * FROM comptes WHERE cpt_bnqId ='.$_GET["id"].'';
                 $req = mysqli_query($bdd,$sql);
                 while($rlt = mysqli_fetch_assoc($req)) {
-					echo '<a title="'.$rlt['cpt_intitule'].'" href="interface.php?id='.$rlt['cpt_id'].'" class="bloc_compte"><img src="../img/monnaie.png" alt=""/><p>'.$rlt['cpt_intitule'].'</p></a>';
+					if ($rlt["cpt_montant"]>0) {
+						echo '<a title="'.$rlt['cpt_intitule'].'" href="interface.php?id='.$rlt['cpt_id'].'" class="bloc_compte"><img src="../img/monnaie.png" alt=""/><p>'.$rlt['cpt_intitule'].'</p><p class="montantpos">'.$rlt['cpt_montant'].' €</p></a>';
+					}
+					else {
+						echo '<a title="'.$rlt['cpt_intitule'].'" href="interface.php?id='.$rlt['cpt_id'].'" class="bloc_compte"><img src="../img/monnaie.png" alt=""/><p>'.$rlt['cpt_intitule'].'</p><p class="montantneg">'.$rlt['cpt_montant'].' €</p></a>';
+					}
 				}
 				echo '</div>';
 				
