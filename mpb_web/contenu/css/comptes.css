@@ -28,7 +28,7 @@ width:100px;
 text-align:right;
 }
 
-#formCpt_intitule, #formCpt_type, #formCpt_numero {
+#formCpt_intitule, #formCpt_type, #formCpt_numero, #formCpt_montant {
 border:1px solid rgb(175,175,175);
 box-sizing:border-box;
 width:160px;
@@ -55,4 +55,66 @@ color:gray;
 
 #navigation a:hover {
 text-decoration:underline;
+}
+
+#bt_suppBnq {
+float:right;
+border:1px solid rgb(200,200,200);
+padding:12px 24px;
+margin:128px 16px 0 0;
+background-color:rgba(255,255,255,.85);
+width: 289px;
+}
+
+#bt_suppBnq h2 {
+margin:0 0 24px 0;
+color:rgb(75,125,175);
+border-bottom:2px dotted rgb(125,175,225);
+}
+
+#div_suppBnq_sup {
+float:right;
+}
+
+#formBnq {
+overflow:auto;
+}
+
+#formBnq label, #formBnq input {
+display:inline-block;
+padding:3px 12px;
+}
+
+#formBnq label {
+width:100px;
+text-align:right;
+}
+
+#bt_comptes {
+overflow:auto;
+}
+
+.bloc_compte {
+margin:12px;
+padding:12px;
+border:1px solid rgb(200,200,200);
+background-color:rgba(255,255,255,.8);
+text-decoration:none;
+width:160px;
+color:rgb(0,0,175);
+display:inline-block;
+}
+
+.bloc_compte img {
+width: 92px;
+padding:6px;
+display:block;
+margin:0 auto 8px auto;
+}
+
+.bloc_compte p {
+margin:0;
+text-align:center;
+font-size:85%;
+overflow:hidden;
 }

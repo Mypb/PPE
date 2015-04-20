@@ -40,11 +40,3 @@ overflow:auto;
 input {
 outline:none;
 }
-
-#infos {
-float:right;
-}
-
-#infos img {
-height:20px;
-}

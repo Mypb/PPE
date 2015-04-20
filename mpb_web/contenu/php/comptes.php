@@ -1,10 +1,10 @@
 <?php
     session_start();
     if(empty($_SESSION['id'])) {
-        header('Location:index.php');
+        header('Location:/mpb/index.php');
     }
     else {
-		include 'includes/bdd.php';
+		$bdd = mysqli_connect('localhost','root','','mpb');
 	}
 ?>
 <!DOCTYPE html>
@@ -34,6 +34,10 @@
 							<label>Type</label>
 								<input id="formCpt_type" name="type" type="text"/>
 						</div>
+						<div id="div_formCpt_montant">
+							<label>Montant</label>
+								<input id="formCpt_montant" name="montant" type="text" maxlength="10"/>
+						</div>
 						<div id="div_formCpt_numero">
 							<label>Numéro</label>
 								<input id="formCpt_numero" name="numero" type="text" maxlength="11"/>
@@ -43,12 +47,13 @@
 						</div>
 					</form>
             <?php
+			$bdd = mysqli_connect('localhost','root','','mpb');
                 if(isset($_POST['creer_compte'])) {
-                    if(empty($_POST['intitule']) || empty($_POST['type']) || empty($_POST['numero'])) {
-                        echo '<p>Vous devez remplir tout les champs !</p>';
+                    if(empty($_POST['intitule']) || empty($_POST['type']) || empty($_POST['montant']) || empty($_POST['numero'])) {
+                        echo '<p>Vous devez remplir tous les champs !</p>';
                     }
                     else {
-                        $sql = 'INSERT INTO comptes VALUES("","'.$_SESSION['id'].'","'.$_GET["id"].'","'.$_POST["intitule"].'","'.$_POST["type"].'","'.$_POST["numero"].'","0")';
+                        $sql = 'INSERT INTO comptes VALUES("","'.$_SESSION['id'].'","'.$_GET["id"].'","'.$_POST["intitule"].'","'.$_POST["type"].'","'.$_POST["montant"].'","'.$_POST["numero"].'")';
                         $req = mysqli_query($bdd,$sql);
                         header('Location:#');
                     }
@@ -60,12 +65,33 @@
                 $sql = 'SELECT * FROM comptes WHERE cpt_bnqId ='.$_GET["id"].'';
                 $req = mysqli_query($bdd,$sql);
                 while($rlt = mysqli_fetch_assoc($req)) {
-					echo '<a href="interface.php?id='.$rlt['cpt_id'].'">'.$rlt['cpt_intitule'].'</a><br/>';
-                }
+					echo '<a title="'.$rlt['cpt_intitule'].'" href="interface.php?id='.$rlt['cpt_id'].'" class="bloc_compte"><img src="../img/monnaie.png" alt=""/><p>'.$rlt['cpt_intitule'].'</p></a>';
+				}
+				echo '</div>';
+				
             ?>
 			</div>
 			</div>
         </section>
+		<div id="bt_suppBnq">
+			<h2>Supprimer la banque</h2>
+				<form id="formBnq" method="post" action="#">
+					<div id="div_suppBnq_sup">
+						<input type="submit" id="formBnq_supp" name="supp_banque" value="Supprimer la banque"/>
+					</div>
+				</form>
+			 <?php
+                if(isset($_POST['supp_banque'])) {
+                    {
+                        $sql = 'DELETE FROM comptes WHERE cpt_bnqId =' .$_GET["id"].'';
+						$sql2 = 'DELETE FROM banques WHERE bnq_id = '.$_GET["id"].'';
+                        $req = mysqli_query($bdd,$sql);
+						$req2 = mysqli_query($bdd,$sql2);
+                        header('Location:banques.php');
+                    }
+                }
+			?>
+		</div>
         <?php include 'includes/footer.php'; ?>
     </body>
 </html>

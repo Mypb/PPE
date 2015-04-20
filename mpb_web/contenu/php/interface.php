@@ -1,10 +1,10 @@
 <?php
     session_start();
     if(empty($_SESSION['id'])) {
-        header('Location:index.php');
+        header('Location:/mpb/index.php');
     }
     else {
-		include 'includes/bdd.php';
+		$bdd = mysqli_connect('localhost','root','','mpb');
 	}
 ?>
 <!DOCTYPE html>
