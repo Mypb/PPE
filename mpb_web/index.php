@@ -60,6 +60,9 @@
 										if($_POST['creMdp1'] != $_POST['creMdp2']) {
 											echo '<p id="message_erreur">Les mots de passe ne correspondent pas.!</p>';
 										}
+                                                                                //elseif{
+                                                                                //    $sql = 'SELECT utl_mail FROM utilisateur WHERE '
+                                                                                //}
 										else {
 											$sql = 'INSERT INTO utilisateurs VALUES("","'.utf8_encode(mysqli_real_escape_string($bdd,$_POST['creNom'])).'","'.utf8_encode(mysqli_real_escape_string($bdd,$_POST['crePrenom'])).'","'.mysqli_real_escape_string($bdd,sha1($_POST['creMdp1'])).'","'.mysqli_real_escape_string($bdd,$_POST['creMail']).'");';
 											$req = mysqli_query($bdd,$sql);

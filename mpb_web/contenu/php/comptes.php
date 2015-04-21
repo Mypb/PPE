@@ -45,7 +45,7 @@
 							<label>Intitulé</label>
 								<input id="formCpt_intitule" name="intitule" type="text"/>
 						</div>
-						<div id="div_formCpt_type">
+                                		<div id="div_formCpt_type">
 							<label>Type</label>
 								<input id="formCpt_type" name="type" type="text"/>
 						</div>
@@ -68,7 +68,7 @@
                         echo '<p>Vous devez remplir tous les champs !</p>';
                     }
                     else {
-                        $sql = 'INSERT INTO comptes VALUES("","'.$_SESSION['id'].'","'.$_GET["id"].'","'.$_POST["intitule"].'","'.$_POST["type"].'","'.$_POST["montant"].'","'.$_POST["numero"].'")';
+                        $sql = 'INSERT INTO comptes VALUES("","'.$_GET["id"].'","'.$_POST["intitule"].'","'.$_POST["type"].'","'.$_POST["montant"].'","'.$_POST["numero"].'")';
                         $req = mysqli_query($bdd,$sql);
                         header('Location:#');
                     }
