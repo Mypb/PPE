@@ -39,24 +39,6 @@ margin:0 0 6px;
 float:right;
 }
 
-#navigation {
-margin:0 0 24px 0;
-padding:6px 16px;
-background-color:rgba(255,255,255,.7);
-color:gray;
-font-size:90%;
-font-weight:bold;
-}
-
-#navigation a {
-text-decoration:none;
-color:gray;
-}
-
-#navigation a:hover {
-text-decoration:underline;
-}
-
 #bt_suppBnq {
 float:right;
 border:1px solid rgb(200,200,200);
@@ -74,20 +56,6 @@ border-bottom:2px dotted rgb(125,175,225);
 
 #div_suppBnq_sup {
 float:right;
-}
-
-#formBnq {
-overflow:auto;
-}
-
-#formBnq label, #formBnq input {
-display:inline-block;
-padding:3px 12px;
-}
-
-#formBnq label {
-width:100px;
-text-align:right;
 }
 
 #bt_comptes {

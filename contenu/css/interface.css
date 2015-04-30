@@ -1,0 +1,38 @@
+#bt_formOp {
+float:right;
+border:1px solid rgb(200,200,200);
+padding:12px 24px;
+margin:0 16px 0 0;
+background-color:rgba(255,255,255,.85);
+}
+
+#bt_formOp h2 {
+margin:0 0 24px 0;
+color:rgb(75,125,175);
+border-bottom:2px dotted rgb(125,175,225);
+}
+
+#formOp {
+overflow:auto;
+}
+
+#formOp label, #formOp input {
+display:inline-block;
+padding:3px 12px;
+}
+
+#formOp label {
+width:100px;
+text-align:right;
+}
+
+#formOp_type,#formOp_reglement,#formOp_montant, #formOp_motif, #formOp_tiers, #formOp_date {
+border:1px solid rgb(175,175,175);
+box-sizing:border-box;
+width:160px;
+margin:0 0 6px;
+}
+
+#div_formOp_cre {
+float:right;
+}

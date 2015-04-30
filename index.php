@@ -54,16 +54,14 @@ if (isset($_SESSION['id'])) {
                         if (empty($_POST['creNom']) || empty($_POST['crePrenom']) || empty($_POST['creMdp1']) || empty($_POST['creMdp2']) || empty($_POST['creMail'])) {
                             echo '<p id="message_erreur">Vous devez remplir tout les champs !</p>';
                         } else {
-                            $sql = "SELECT utl_mail FROM utilisateurs WHERE utl_mail =  '".$_POST['creMail']."'";
+                            $sql = "SELECT utl_mail FROM utilisateurs WHERE utl_mail =  '" . $_POST['creMail'] . "'";
                             $req = mysqli_query($bdd, $sql);
                             $rlt = mysqli_num_rows($req);
                             if ($_POST['creMdp1'] != $_POST['creMdp2']) {
                                 echo '<p id="message_erreur">Les mots de passe ne correspondent pas.</p>';
-                            }
-                            elseif($rlt>0){
+                            } elseif ($rlt > 0) {
                                 echo '<p id="message_erreur">L\'adresse mail est déjà utilisée.</p>';
-                            }
-                            else {
+                            } else {
                                 $sql = 'INSERT INTO utilisateurs VALUES("","' . utf8_encode(mysqli_real_escape_string($bdd, $_POST['creNom'])) . '","' . utf8_encode(mysqli_real_escape_string($bdd, $_POST['crePrenom'])) . '","' . mysqli_real_escape_string($bdd, sha1($_POST['creMdp1'])) . '","' . mysqli_real_escape_string($bdd, $_POST['creMail']) . '");';
                                 $req = mysqli_query($bdd, $sql);
                                 header('Location:index.php');
@@ -98,9 +96,9 @@ if (isset($_SESSION['id'])) {
                             $req = mysqli_query($bdd, $sql);
                             $rlt = mysqli_fetch_assoc($req);
                             if (mysqli_real_escape_string($bdd, sha1($_POST['cnxMdp'])) == $rlt['utl_motDePasse']) {
-                                $_SESSION['id'] = $rlt['utl_id'];
-                                $_SESSION['nom'] = $rlt['utl_nom'];
-                                $_SESSION['prenom'] = $rlt['utl_prenom'];
+                                $_SESSION['ult_id'] = $rlt['utl_id'];
+                                $_SESSION['ult_nom'] = $rlt['utl_nom'];
+                                $_SESSION['ult_prenom'] = $rlt['utl_prenom'];
                                 header('Location:contenu/php/banques.php');
                             } else {
                                 echo '<p id="message_erreur">Les identifiants sont incorrects !</p>';
