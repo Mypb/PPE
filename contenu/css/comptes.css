@@ -37,6 +37,7 @@ margin:0 0 6px;
 
 #div_formCpt_cre {
 float:right;
+overflow:hidden;
 }
 
 #bt_suppBnq {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 30 Avril 2015 à 17:34
+-- Généré le :  Ven 12 Juin 2015 à 15:23
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -34,18 +34,16 @@ CREATE TABLE IF NOT EXISTS `banques` (
   `bqn_guichet` decimal(10,0) NOT NULL,
   PRIMARY KEY (`bnq_id`),
   KEY `bnq_utlId` (`bnq_utlId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `banques`
 --
 
 INSERT INTO `banques` (`bnq_id`, `bnq_utlId`, `bnq_intitule`, `bnq_numero`, `bqn_guichet`) VALUES
-(6, 33, 'test', '0', '0'),
 (7, 34, 'test', '0', '0'),
-(8, 33, 'test', '0', '0'),
-(9, 35, 'fds', '0', '0'),
-(10, 35, 'sdfg', '0', '0');
+(15, 33, 'test34', '0', '0'),
+(20, 35, 'Banque Populaire', '45621', '54654');
 
 -- --------------------------------------------------------
 
@@ -62,19 +60,16 @@ CREATE TABLE IF NOT EXISTS `comptes` (
   `cpt_numero` decimal(10,0) NOT NULL,
   PRIMARY KEY (`cpt_id`),
   KEY `cpt_bnqId` (`cpt_bnqId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `comptes`
 --
 
 INSERT INTO `comptes` (`cpt_id`, `cpt_bnqId`, `cpt_intitule`, `cpt_type`, `cpt_montant`, `cpt_numero`) VALUES
-(4, 6, 'test', 'test', 2, '0'),
-(5, 6, 'test', 'test', 2, '0'),
 (6, 7, 'test', 'test', 2, '0'),
-(7, 8, 'tes', 'test', 2, '0'),
-(8, 9, 'dsf', 'dsg', 132, '0'),
-(9, 9, 'fsqdf', 'fqsdf', 2, '456');
+(20, 15, 'test35', 'gdsfgsfg', 0, '0'),
+(37, 20, 'Compte Ã©pargne', 'Epargne', 1500, '9999999999');
 
 -- --------------------------------------------------------
 
@@ -111,30 +106,24 @@ CREATE TABLE IF NOT EXISTS `operations` (
   `op_date` date NOT NULL,
   `op_fait` tinyint(1) DEFAULT NULL,
   `op_cptId` int(11) NOT NULL,
+  `op_bnqId` int(11) NOT NULL,
   `op_typeOpId` int(11) NOT NULL,
   `op_rglId` int(11) NOT NULL,
   PRIMARY KEY (`op_id`),
   KEY `op_typeOpId` (`op_typeOpId`,`op_rglId`),
   KEY `op_rglId` (`op_rglId`),
-  KEY `op_cptId` (`op_cptId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+  KEY `op_cptId` (`op_cptId`),
+  KEY `op_bnqId` (`op_bnqId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `operations`
 --
 
-INSERT INTO `operations` (`op_id`, `op_montant`, `op_motif`, `op_tiers`, `op_date`, `op_fait`, `op_cptId`, `op_typeOpId`, `op_rglId`) VALUES
-(10, 2, 'testd', 'tes', '1995-02-02', 1, 8, 1, 1),
-(11, 7843, 'gfdh', 'dfghdf', '2016-05-02', 1, 8, 1, 1),
-(12, 7456879, 'hgfd', 'df', '2019-01-02', 1, 8, 1, 1),
-(13, 45645, 'gfsdfg', 'gfdsfgs', '1995-02-02', 1, 9, 1, 1),
-(14, 5, 'fd', 'hgfdhg', '0001-01-01', 1, 8, 1, 1),
-(15, 1, 'test', 'test', '1995-02-02', 1, 8, 1, 1),
-(16, 2, ',jyf', 'kjygk', '2019-02-02', 0, 8, 1, 1),
-(17, 2, 'liudfg', 'lkughef', '1995-02-02', 1, 8, 1, 1),
-(18, 5, 'fdsq', 'fdsq', '2020-02-02', 0, 8, 1, 1),
-(19, 20, 'hgfd', 'hgfd', '0002-02-02', 1, 8, 1, 1),
-(20, 100, 'fgds', 'gfds', '0002-02-02', 1, 8, 1, 1);
+INSERT INTO `operations` (`op_id`, `op_montant`, `op_motif`, `op_tiers`, `op_date`, `op_fait`, `op_cptId`, `op_bnqId`, `op_typeOpId`, `op_rglId`) VALUES
+(5, 500, 'Ecole', 'Bissy', '2014-02-02', 1, 37, 20, 2, 2),
+(6, 2000, 'Credit', 'Banque', '2013-06-02', 1, 37, 20, 1, 1),
+(8, 45, 'Piscine', 'Nerac', '2015-09-02', 0, 37, 20, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -196,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `utl_motDePasse` char(40) NOT NULL,
   `utl_mail` varchar(255) NOT NULL,
   PRIMARY KEY (`utl_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Contenu de la table `utilisateurs`
@@ -205,7 +194,8 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 INSERT INTO `utilisateurs` (`utl_id`, `utl_nom`, `utl_prenom`, `utl_motDePasse`, `utl_mail`) VALUES
 (33, 'Wilgenbus', 'Robin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'SenrielW@laposte.net'),
 (34, 'test', 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test'),
-(35, 'Wilgenbus', 'Robin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Senriel');
+(35, 'Wilgenbus', 'Robin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Senriel'),
+(36, 'gfdsgfds', 'gsdgfdsfgs', '1216b3c8ab58c2ea0d3dbae18aa694fa2b63fe70', 'gfdsgfdsg');
 
 --
 -- Contraintes pour les tables exportées
@@ -227,9 +217,10 @@ ALTER TABLE `comptes`
 -- Contraintes pour la table `operations`
 --
 ALTER TABLE `operations`
-  ADD CONSTRAINT `operations_ibfk_3` FOREIGN KEY (`op_cptId`) REFERENCES `comptes` (`cpt_id`),
   ADD CONSTRAINT `operations_ibfk_1` FOREIGN KEY (`op_typeOpId`) REFERENCES `types_operations` (`typOp_id`),
-  ADD CONSTRAINT `operations_ibfk_2` FOREIGN KEY (`op_rglId`) REFERENCES `modes_reglements` (`rgl_id`);
+  ADD CONSTRAINT `operations_ibfk_2` FOREIGN KEY (`op_rglId`) REFERENCES `modes_reglements` (`rgl_id`),
+  ADD CONSTRAINT `operations_ibfk_3` FOREIGN KEY (`op_cptId`) REFERENCES `comptes` (`cpt_id`),
+  ADD CONSTRAINT `operations_ibfk_4` FOREIGN KEY (`op_bnqId`) REFERENCES `banques` (`bnq_id`);
 
 --
 -- Contraintes pour la table `operations_planifiees`

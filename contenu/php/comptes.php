@@ -2,12 +2,11 @@
 session_start();
 
 if (empty($_SESSION['ult_id'])) {
-    header('Location:index.php');
+    header('Location:/mpb_web/index.php');
 }
 include 'includes/bdd.php';
-if ($_SESSION['cpt_id'] == 0) {
-    $_SESSION['bnq_id'] = $_GET['bnq_id'];
-}
+$_SESSION['bnq_id'] = $_GET['bnq_id'];
+
 $sql = 'SELECT bnq_id FROM banques WHERE bnq_utlId =' . $_SESSION['ult_id'] . ' AND bnq_id = ' . $_SESSION['bnq_id'] . '';
 $req = mysqli_query($bdd, $sql);
 $rlt = mysqli_num_rows($req);
@@ -15,7 +14,6 @@ if ($rlt == 0) {
     header('Location:deconnexion.php');
 }
 $_SESSION['cpt_id'] = 0;
-
 
 ?>
 
@@ -32,7 +30,13 @@ $_SESSION['cpt_id'] = 0;
     <body>
         <?php include 'includes/header.php'; ?>
         <div id="navigation">
-            <a href="banques.php">Banques</a> ► <a href="comptes.php?bnq_id=<?php echo $_SESSION['bnq_id']; ?>">Comptes</a>
+            <div id="arborescence"><a href="banques.php">Banques</a> ► <a href="comptes.php?bnq_id=<?php echo $_SESSION['bnq_id']; ?>">Comptes</a></div>
+            <div id="identification">
+                <?php
+                print('<p id="identifiants">'.$_SESSION['ult_prenom'].' '.$_SESSION['ult_nom'].'</p>');
+                ?>
+                <a href="/mpb_web/contenu/php/deconnexion.php" id="lien_deconnexion"><img src="../img/deconnexion.png" alt="" title="Se déconnecter"/></a>
+            </div>
         </div>
         <section>
             <div id="bt_formCpt">
@@ -59,7 +63,6 @@ $_SESSION['cpt_id'] = 0;
                     </div>
                 </form>
                 <?php
-                $bdd = mysqli_connect('localhost', 'root', '', 'mpb');
                 if (isset($_POST['creer_compte'])) {
                     if (empty($_POST['intitule']) || empty($_POST['type']) || empty($_POST['montant']) || empty($_POST['numero'])) {
                         echo '<p>Vous devez remplir tous les champs !</p>';
@@ -97,11 +100,14 @@ $_SESSION['cpt_id'] = 0;
         </form>
         <?php
         if (isset($_POST['supp_banque'])) { {
-                $sql = 'DELETE FROM comptes WHERE cpt_bnqId =' . $_GET["bnq_id"] . '';
-                $sql2 = 'DELETE FROM banques WHERE bnq_id = ' . $_GET["bnq_id"] . '';
-                $req = mysqli_query($bdd, $sql);
+                $sql1 = 'DELETE FROM operations WHERE op_bnqId = ' .$_GET["bnq_id"] .'';
+                $sql2 = 'DELETE FROM comptes WHERE cpt_bnqId =' . $_GET["bnq_id"] . '';
+                $sql3 = 'DELETE FROM banques WHERE bnq_id = ' . $_GET["bnq_id"] . '';
+                $req1 = mysqli_query($bdd, $sql1);
                 $req2 = mysqli_query($bdd, $sql2);
+                $req3 = mysqli_query($bdd, $sql3);
                 header('Location:banques.php');
+                echo $_GET["bnq_id"];
             }
         }
         ?>

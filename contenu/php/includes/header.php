@@ -1,14 +1,37 @@
 <header>
     <img src="/mpb_web/contenu/img/mpb.png" alt="" id="logo"/>
-            </div>
-            <?php
-            
-                # Si l'utilisateur est connecté
-                
-				
-                if(isset($_SESSION['ult_id'])) {
-					echo '<p id="identifiants">'.$_SESSION['ult_prenom'].' '.$_SESSION['ult_nom'].'</p>';
-                    echo '<a href="/mpb_web/contenu/php/deconnexion.php" id="lien_deconnexion"><img src="../img/deconnexion.png" alt="" title="Se déconnecter"/></a>';
+    <?php
+        if(isset($_SESSION['bnq_id'])) {
+            if($_SESSION['bnq_id']!=0) {
+                print("<div id='intGene'>");
+                $sql = 'SELECT * FROM banques WHERE bnq_id = '.$_SESSION['bnq_id'].'';
+                $req = mysqli_query($bdd, $sql);
+                $rlt = mysqli_fetch_assoc($req);
+                print("<div id='intBanque'>".$rlt['bnq_intitule']."</div>");
+            }
+        }
+        if(isset($_SESSION['cpt_id'])) {
+            if($_SESSION['cpt_id']!=0){
+                $sql = 'SELECT * FROM comptes WHERE cpt_id = '.$_SESSION['cpt_id'].'';
+                $req = mysqli_query($bdd, $sql);
+                $rlt = mysqli_fetch_assoc($req);
+                print("<div id='intCompte'>".$rlt['cpt_intitule']."</div>");
+                print("</div>");
+            }
+        }
+        if(isset($_SESSION['cpt_id'])) {
+            if($_SESSION['cpt_id']!=0){
+                $sql = 'SELECT * FROM comptes WHERE cpt_id =' . $_SESSION['cpt_id'] . '';
+                $req = mysqli_query($bdd, $sql);
+                $rlt = mysqli_fetch_assoc($req);
+                echo "<div id=montantActu><p id='titreMont'>Montant actuel</p>";
+                if ($rlt["cpt_montant"] > 0) {
+                    echo '<p id="montantposh">'. $rlt['cpt_montant'] . ' €</p></a>';
+                } else {
+                    echo '<p id="montantnegh">' . $rlt['cpt_montant'] . ' €</p></a>';
                 }
-            ?>
-        </header>
+                echo "</div>";
+            }
+        }
+    ?>
+</header>

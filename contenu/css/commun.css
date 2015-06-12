@@ -16,21 +16,32 @@ padding:12px;
 #logo {
 float:left;
 width:512px;
-margin:0 32px 0 0;
+margin:0 92px 0 0;
 }
 
-#identifiants {
+#arborescence{
 float:left;
-border:1px dashed;
-padding:3px 12px;
+}
+
+#identification {
+float:right;
 color:rgb(120,163,193);
 font-weight:bold;
-margin:35px 0 0 0;
+margin:0;
+}
+
+#identifiants{
+float:left;
+margin:0;
 }
 
 #lien_deconnexion {
 float:right;
-margin-top:34px;
+}
+
+#lien_deconnexion img {
+margin-left:10px;
+height:22px;
 }
 
 section {
@@ -43,11 +54,12 @@ outline:none;
 
 #navigation {
 margin:0 0 24px 0;
-padding:6px 16px;
+padding:6px 16px 3px 16px;
 background-color:rgba(255,255,255,.7);
 color:gray;
 font-size:90%;
 font-weight:bold;
+overflow: auto;
 }
 
 #navigation a {
@@ -57,4 +69,17 @@ color:gray;
 
 #navigation a:hover {
 text-decoration:underline;
+}
+
+#intBanque{
+    font-size:120%;
+    font-weight: bold;
+}
+
+#intGene{
+    color:darkslateblue;
+    margin-top:26px;
+    float:left;
+    text-align:center;
+    font-size:115%;
 }

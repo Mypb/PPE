@@ -1,10 +1,10 @@
 ﻿<?php
 session_start();
+ob_start();
 if (isset($_SESSION['id'])) {
-    header('Location:contenu/php/banques.php');
-} else {
-    $bdd = mysqli_connect('localhost', 'root', '', 'mpb');
+    header('Location:/mpb_web/index.php');
 }
+include 'contenu/php/includes/bdd.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -112,3 +112,5 @@ if (isset($_SESSION['id'])) {
         <?php include 'contenu/php/includes/footer.php'; ?>
     </body>
 </html>
+
+<?php ob_end_flush(); ?>

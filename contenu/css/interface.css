@@ -1,19 +1,18 @@
 #bt_formOp {
-float:right;
 border:1px solid rgb(200,200,200);
 padding:12px 24px;
 margin:0 16px 0 0;
 background-color:rgba(255,255,255,.85);
 }
 
-#bt_formOp h2 {
+h2 {
 margin:0 0 24px 0;
 color:rgb(75,125,175);
 border-bottom:2px dotted rgb(125,175,225);
 }
 
 #formOp {
-overflow:auto;
+overflow:hidden;
 }
 
 #formOp label, #formOp input {
@@ -35,4 +34,77 @@ margin:0 0 6px;
 
 #div_formOp_cre {
 float:right;
+}
+
+#bt_historique {
+float:left;
+border:1px solid rgb(200,200,200);
+padding:12px 24px;
+margin:0 0 0 16px;
+background-color:rgba(255,255,255,.85);
+}
+
+#bt_gen{
+float:left;
+}
+
+#bt_opPlan {
+border:1px solid rgb(200,200,200);
+padding:12px 24px;
+margin:0 0 16px 16px;
+background-color:rgba(255,255,255,.85);
+}
+
+td{
+border:1px solid rgb(175,175,175);
+padding:15px;
+}
+
+#bt_suppCpt {
+float:right;
+border:1px solid rgb(200,200,200);
+padding:12px 24px;
+margin:24px 16px 0 0;
+background-color:rgba(255,255,255,.85);
+width: 289px;
+}
+
+#div_suppCpt_sup {
+float:right;
+}
+
+.montantpos {
+color: green;
+}
+
+.montantneg {
+color: red;
+}
+
+#montantActu{
+    float:right;
+    text-align: right;
+}
+
+#bt_droite{
+    float:right;
+}
+
+#montantposh{
+    font-weight: bold;
+    color: green;
+    margin:0;
+    font-size:130%;
+}
+
+#montantnegh{
+    font-weight: bold;
+    color: red;
+    margin:0;
+    font-size:130%;
+}
+
+#titreMont{
+    color:grey;
+    margin:0
 }

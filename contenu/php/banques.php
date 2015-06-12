@@ -2,11 +2,11 @@
 session_start();
 
 if (empty($_SESSION['ult_id'])) {
-    header('Location:/mpb/index.php');
+    header('Location:/mpb_web/index.php');
 }
+$_SESSION['bnq_id']=0;
+$_SESSION['cpt_id']=0;
 include 'includes/bdd.php';
-$_SESSION['bnq_id'] = 0;
-$_SESSION['cpt_id'] = 0;
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,13 @@ $_SESSION['cpt_id'] = 0;
     <body>
         <?php include 'includes/header.php'; ?>
         <div id="navigation">
-            <a href="banques.php">Banques</a> ►
+            <div id="arborescence"><a href="banques.php">Banques</a> ►</div>
+            <div id="identification">
+                <?php
+                print('<p id="identifiants">'.$_SESSION['ult_prenom'].' '.$_SESSION['ult_nom'].'</p>');
+                ?>
+                <a href="/mpb_web/contenu/php/deconnexion.php" id="lien_deconnexion"><img src="../img/deconnexion.png" alt="" title="Se déconnecter"/></a>
+            </div>
         </div>
         <section>
             <div id="bt_formBanq">
