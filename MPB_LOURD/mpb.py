@@ -248,11 +248,9 @@ def programme(bId,cId,pOperation):
         for a,b,d,e,f in c.execute("SELECT op_cptId, op_etat, op_type, op_date, op_montant FROM operations WHERE op_cptId = ? AND op_etat = 'Non effectuee'",(cId,)):
             if e <= date:
                 if d == "Entrant":
-                    print("PROUT")
                     c.execute("UPDATE comptes SET cpt_montant = cpt_montant + ? WHERE cpt_id = ?",(f,cId,))
                     bdd.commit()
                 if d == "Sortant":
-                    print("PRAT")
                     c.execute("UPDATE comptes SET cpt_montant = cpt_montant - ? WHERE cpt_id = ?",(f,cId))
                     bdd.commit()
                 c.execute("UPDATE operations SET op_etat = 'Effectuee' ")
@@ -268,7 +266,6 @@ def programme(bId,cId,pOperation):
         font = wx.Font(13,wx.MODERN,wx.NORMAL,wx.NORMAL,False,u'Arial')
         font2 = wx.Font(13,wx.MODERN,wx.NORMAL,wx.NORMAL,False,u'Arial')
         montantCompteValeur = c.execute("SELECT cpt_montant FROM comptes WHERE cpt_id = ?",(cId,))
-        print(str(montantCompteValeur))
         montantCompte = wx.StaticText(pOperation,-1,"Montant du compte : 2500 euros",style=wx.TE_CENTRE)
         montantCompte.SetForegroundColour((175,0,0))
         montantCompte.SetFont(font2)
