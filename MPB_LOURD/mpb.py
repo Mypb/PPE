@@ -78,27 +78,28 @@ def fenetreCreerCompte(bId,cId):
     pCreerCompte = wx.Panel(fCreerCompte,-1)
     
     sizer = wx.GridBagSizer(16,16)
+    sizer2 = wx.BoxSizer(wx.VERTICAL)
     
     labelIntitule = wx.StaticText(pCreerCompte,-1,"Intitulé :")
     champIntitule = wx.TextCtrl(pCreerCompte,-1)
-    sizer.Add(labelIntitule,(1,1),(1,1))
-    sizer.Add(champIntitule,(1,2),(1,1))
+    sizer.Add(labelIntitule,(0,0),(1,1))
+    sizer.Add(champIntitule,(0,1),(1,1))
     
     labelnCompte = wx.StaticText(pCreerCompte,-1,"Numéro :")
     champnCompte = wx.TextCtrl(pCreerCompte,-1)
-    sizer.Add(labelnCompte,(2,1),(1,1))
-    sizer.Add(champnCompte,(2,2),(1,1))
+    sizer.Add(labelnCompte,(1,0),(1,1))
+    sizer.Add(champnCompte,(1,1),(1,1))
     
     labelMontant = wx.StaticText(pCreerCompte,-1,"Montant :")
     champMontant = wx.TextCtrl(pCreerCompte,-1)
-    sizer.Add(labelMontant,(3,1),(1,1))
-    sizer.Add(champMontant,(3,2),(1,1))
+    sizer.Add(labelMontant,(2,0),(1,1))
+    sizer.Add(champMontant,(2,1),(1,1))
     
     boutonCreer = wx.Button(pCreerCompte,-1,"Créer un compte")
     fPrincipal.Bind(wx.EVT_BUTTON,onBoutonCreerCompte,boutonCreer)
-    sizer.Add(boutonCreer,(4,2),(1,1))
-    
-    pCreerCompte.SetSizerAndFit(sizer)
+    sizer.Add(boutonCreer,(3,1),(1,1))
+    sizer2.Add(sizer,1,wx.ALL|wx.EXPAND,20)
+    pCreerCompte.SetSizerAndFit(sizer2)
     fCreerCompte.Fit()
     fCreerCompte.Show()
 
@@ -125,40 +126,41 @@ def fenetreCreerOperation(bId,cId,pOperation):
     pCreerOperation = wx.Panel(fCreerOperation,-1)
     
     sizer = wx.GridBagSizer(16,16)
+    sizer2 = wx.BoxSizer(wx.VERTICAL)
     
     labelType = wx.StaticText(pCreerOperation,-1,"Type :")
     champType = wx.Choice(pCreerOperation,-1,choices=["Entrant","Sortant"])
     champType.SetSelection(0)
-    sizer.Add(labelType,(1,1),(1,1))
-    sizer.Add(champType,(1,2),(1,1))
+    sizer.Add(labelType,(0,0),(1,1))
+    sizer.Add(champType,(0,1),(1,1))
     
     labelReglement = wx.StaticText(pCreerOperation,-1,"Réglement :")
     champReglement = wx.Choice(pCreerOperation,-1,choices=["Carte","Chèque","Virement"])
     champReglement.SetSelection(0)
-    sizer.Add(labelReglement,(2,1),(1,1))
-    sizer.Add(champReglement,(2,2),(1,1))
+    sizer.Add(labelReglement,(1,0),(1,1))
+    sizer.Add(champReglement,(1,1),(1,1))
     
     labelMotif = wx.StaticText(pCreerOperation,-1,"Motif :")
     champMotif = wx.TextCtrl(pCreerOperation,-1)
-    sizer.Add(labelMotif,(3,1),(1,1))
-    sizer.Add(champMotif,(3,2),(1,1))
+    sizer.Add(labelMotif,(2,0),(1,1))
+    sizer.Add(champMotif,(2,1),(1,1))
     
     labelMontant = wx.StaticText(pCreerOperation,-1,"Montant :")
     champMontant = wx.TextCtrl(pCreerOperation,-1)
-    sizer.Add(labelMontant,(4,1),(1,1))
-    sizer.Add(champMontant,(4,2),(1,1))
+    sizer.Add(labelMontant,(3,0),(1,1))
+    sizer.Add(champMontant,(3,1),(1,1))
     
     labelDate = wx.StaticText(pCreerOperation,-1,"Date :")
     champDate = wx.DatePickerCtrl(pCreerOperation,-1)
     champDate.Bind(wx.EVT_DATE_CHANGED,onChangerDate)
-    sizer.Add(labelDate,(5,1),(1,1))
-    sizer.Add(champDate,(5,2),(1,1))
+    sizer.Add(labelDate,(4,0),(1,1))
+    sizer.Add(champDate,(4,1),(1,1))
     
     boutonCreer = wx.Button(pCreerOperation,-1,"Créer une opération")
     fCreerOperation.Bind(wx.EVT_BUTTON,onBoutonCreerOperation,boutonCreer)
-    sizer.Add(boutonCreer,(6,2),(1,1))
-    
-    pCreerOperation.SetSizerAndFit(sizer)
+    sizer.Add(boutonCreer,(5,1),(1,1))
+    sizer2.Add(sizer,1,wx.ALL|wx.EXPAND,20)
+    pCreerOperation.SetSizerAndFit(sizer2)
     fCreerOperation.Fit()
     fCreerOperation.Show()
 
@@ -191,7 +193,7 @@ def programme(bId,cId,pOperation):
         pOperation.Hide()
         programme(bId,cId,pOperation)
     
-    def onSupprimerCompte(event,cId):
+    def onSupprimerCompte(event):
         c.execute("DELETE FROM operations WHERE op_cptId = ?",(cId,))
         c.execute("DELETE FROM comptes WHERE cpt_id = ?",(cId,))
         bdd.commit()
@@ -265,8 +267,9 @@ def programme(bId,cId,pOperation):
         sizer2 = wx.BoxSizer()
         font = wx.Font(13,wx.MODERN,wx.NORMAL,wx.NORMAL,False,u'Arial')
         font2 = wx.Font(13,wx.MODERN,wx.NORMAL,wx.NORMAL,False,u'Arial')
-        montantCompteValeur = c.execute("SELECT cpt_montant FROM comptes WHERE cpt_id = ?",(cId,))
-        montantCompte = wx.StaticText(pOperation,-1,"Montant du compte : 2500 euros",style=wx.TE_CENTRE)
+        for i in c.execute("SELECT cpt_montant FROM comptes WHERE cpt_id = ?",(cId,)):
+            montantDuCompte = str(i)
+        montantCompte = wx.StaticText(pOperation,-1,"Montant du compte : "+str(montantDuCompte),style=wx.TE_CENTRE)
         montantCompte.SetForegroundColour((175,0,0))
         montantCompte.SetFont(font2)
         type = wx.StaticText(pOperation,-1,"TYPE",style=wx.TE_CENTRE)
